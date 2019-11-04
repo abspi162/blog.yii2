@@ -74,7 +74,10 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         return $this->id;
     }
-
+    public function getUsername()
+    {
+         return $this->username;
+    }
     /**
      * {@inheritdoc}
      */

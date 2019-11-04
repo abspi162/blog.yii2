@@ -65,12 +65,13 @@ class Posts extends \yii\db\ActiveRecord
             $this->filename = 'static/images/' . $this->string . '.' . $this->image->extension;
             $this->image->saveAs($this->filename);
 
-            $this->text_preview = BaseStringHelper::truncate($this->text, 50, '...');
+            $this->text_preview = BaseStringHelper::truncate($this->text, 247, '...');
 
             //save
             $this->img = '/' . $this->filename;
         }else{
             $this->image = UploadedFile::getInstance($this, 'img');
+            $this->text_preview = BaseStringHelper::truncate($this->text, 247, '...');
             if($this->image){
                 $this->image->saveAs(substr($this->img, 1));
             }

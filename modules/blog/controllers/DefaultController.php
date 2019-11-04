@@ -21,7 +21,7 @@ class DefaultController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['get'],
                 ],
             ],
             'access' => [
@@ -48,7 +48,7 @@ class DefaultController extends Controller
 
         if ($AllPosts) {
 
-            $pages = new Pagination(['totalCount' => $AllPosts->count(), 'pageSize' => 9]);
+            $pages = new Pagination(['totalCount' => $AllPosts->count(), 'pageSize' => 5]);
             $posts = $AllPosts->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
@@ -67,6 +67,7 @@ class DefaultController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+
     }
 
     /**
@@ -115,7 +116,6 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
